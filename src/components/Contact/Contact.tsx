@@ -1,11 +1,7 @@
-/**
- * Contact Section Component
- * Uses TailwindCSS, Material Icons, and GSAP
- */
-
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import emailjs from "@emailjs/browser";
 import EmailIcon from "@mui/icons-material/Email";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -53,12 +49,14 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [isSending, setIsSending] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -146,7 +144,7 @@ const Contact = () => {
       // Add listener
       gsap.ticker.add(checkProximity);
 
-      // Cleanup listener when context flushes (though ctx.revert might not catch ticker adds automatically, better to be safe)
+      // Cleanup listener when context flushes
       return () => {
         gsap.ticker.remove(checkProximity);
       };
@@ -162,11 +160,40 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(t.contact.alertSuccess);
-    setFormData({ name: "", email: "", message: "" });
+    setIsSending(true);
+
+    try {
+      // Replace with your EmailJS service ID, template ID, and public key
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        console.error("EmailJS keys are missing! Please check your .env file.");
+        alert(
+          "Sorry, the contact form is not configured yet. Please email me directly."
+        );
+        setIsSending(false);
+        return;
+      }
+
+      await emailjs.sendForm(
+        serviceId,
+        templateId,
+        formRef.current!,
+        publicKey
+      );
+
+      alert(t.contact.alertSuccess);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send message. Please try again later.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -207,7 +234,6 @@ const Contact = () => {
           className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-[1000px] mx-auto items-center"
         >
           {/* Contact Information */}
-          {/* Contact Cards */}
           <div className="space-y-4">
             {contactInfo.map((contact, index) => (
               <a
@@ -233,7 +259,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="name"
@@ -293,10 +319,17 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-gray-600 text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg"
+              disabled={isSending}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-gray-600 text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <SendIcon />
-              {t.contact.send}
+              {isSending ? (
+                <span>Sending...</span>
+              ) : (
+                <>
+                  <SendIcon />
+                  {t.contact.send}
+                </>
+              )}
             </button>
           </form>
         </div>
