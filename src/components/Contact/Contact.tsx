@@ -294,13 +294,17 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-[var(--color-border)] text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-[var(--color-border)] text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+                  language === "ar" ? "flex-row-reverse" : ""
+                }`}
               >
                 {isSubmitting ? (
                   <span>{t.contact.sending}</span>
                 ) : (
                   <>
-                    <SendIcon />
+                    <SendIcon
+                      className={language === "ar" ? "rotate-180" : ""}
+                    />
                     {t.contact.send}
                   </>
                 )}
