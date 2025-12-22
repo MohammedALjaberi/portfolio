@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -186,13 +187,16 @@ const Contact = () => {
         message: formData.message,
       };
 
+      // ... existing imports ...
+
+      // ... inside handleSubmit ...
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
-      alert(t.contact.alertSuccess);
+      toast.success(t.contact.alertSuccess);
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("EmailJS Error:", error);
-      alert("Failed to send message. Please try again later.");
+      toast.error("Failed to send message. Please try again later.");
     } finally {
       setIsSending(false);
     }
