@@ -21,6 +21,11 @@ export const TRANS = {
       description:
         "I'm a passionate developer who loves creating beautiful and functional web experiences. With a strong foundation in modern web technologies, I strive to build applications that solve real-world problems.",
     },
+    stats: {
+      experienceYears: "Experience Years",
+      projects: "Projects",
+      technologies: "Technologies",
+    },
     skills: {
       title: "My Skills",
       description: "Technologies I work with",
@@ -99,6 +104,11 @@ export const TRANS = {
       title: "عني",
       description:
         "أنا مطور شغوف أحب إنشاء تجارب ويب جميلة وعملية مع أساس قوي في تقنيات الويب الحديثة، أسعى لبناء تطبيقات تحل مشاكل العالم الحقيقي.",
+    },
+    stats: {
+      experienceYears: "سنوات الخبرة",
+      projects: "مشاريع",
+      technologies: "تقنيات",
     },
     skills: {
       title: "مهاراتي",

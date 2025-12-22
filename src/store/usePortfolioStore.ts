@@ -19,7 +19,7 @@ interface PortfolioState {
 const usePortfolioStore = create<PortfolioState>()(
   persist(
     (set) => ({
-      theme: "dark",
+      theme: "light",
       language: "en",
       activeSection: "#home",
       isScrolled: false,
