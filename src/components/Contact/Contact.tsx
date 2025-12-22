@@ -294,7 +294,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-gray-600 text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-[var(--color-border)] text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <span>{t.contact.sending}</span>
@@ -318,7 +318,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="group glass flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:border-[#1ae66b] hover:translate-x-2 hover:bg-[var(--color-bg-tertiary)]"
               >
-                <div className="w-12 h-12 rounded-xl bg-transparent border border-gray-600 flex items-center justify-center text-[#1ae66b] flex-shrink-0 transition-colors duration-300 group-hover:border-[#1ae66b]">
+                <div className="w-12 h-12 rounded-xl bg-transparent border border-[var(--color-border)] flex items-center justify-center text-[#1ae66b] flex-shrink-0 transition-colors duration-300 group-hover:border-[#1ae66b]">
                   {contact.icon}
                 </div>
                 <div className="min-w-0">
@@ -342,7 +342,7 @@ const Contact = () => {
             const hero = document.querySelector("#home");
             if (hero) hero.scrollIntoView({ behavior: "smooth" });
           }}
-          className="group w-14 h-14 rounded-full bg-transparent border border-gray-600 flex items-center justify-center text-[#1ae66b] transition-all duration-300 hover:-translate-y-1 hover:border-[#1ae66b]"
+          className="group w-14 h-14 rounded-full bg-transparent border border-[#1ae66b] flex items-center justify-center text-[#1ae66b] transition-all duration-300 hover:-translate-y-1 hover:border-[#1ae66b]"
           aria-label="Scroll to top"
         >
           <KeyboardArrowUpIcon sx={{ fontSize: 28 }} />

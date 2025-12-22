@@ -59,12 +59,15 @@ const Experience = () => {
         {/* Timeline */}
         <div
           ref={timelineRef}
-          className="relative max-w-[800px] mx-auto before:content-[''] before:absolute before:left-0 md:before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-[#1ae66b] before:to-[#16c45b] before:rounded-full"
+          className="relative max-w-[800px] mx-auto ltr:before:left-0 rtl:before:right-0 md:ltr:before:left-0 before:absolute before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-[#1ae66b] before:to-[#16c45b] before:rounded-full"
         >
           {t.experience.items.map((exp: any, index: number) => (
-            <div key={index} className="relative pl-6 md:pl-10 pb-10 last:pb-0">
+            <div
+              key={index}
+              className="relative ltr:pl-6 rtl:pr-6 md:ltr:pl-10 md:rtl:pr-10 pb-10 last:pb-0"
+            >
               {/* Timeline Dot */}
-              <div className="absolute left-[-7px] top-0 w-4 h-4 bg-gradient-to-br from-[#1ae66b] to-[#16c45b] rounded-full border-[3px] border-[var(--color-bg-primary)] shadow-[0_0_20px_rgba(26,230,107,0.4)]"></div>
+              <div className="absolute ltr:left-[-7px] rtl:right-[-7px] top-0 w-4 h-4 bg-gradient-to-br from-[#1ae66b] to-[#16c45b] rounded-full border-[3px] border-[var(--color-bg-primary)] shadow-[0_0_20px_rgba(26,230,107,0.4)]"></div>
 
               <article className="glass p-5 md:p-6 rounded-2xl transition-all duration-300 hover:border-[var(--color-border-hover)] hover:translate-x-2 hover:shadow-xl">
                 {/* Card Header */}
