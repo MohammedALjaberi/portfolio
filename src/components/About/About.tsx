@@ -101,7 +101,7 @@ const About = () => {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 md:mt-8 w-full">
               {[
-                { number: "1+", label: t.stats.experienceYears },
+                { number: "2+", label: t.stats.experienceYears },
                 { number: "5+", label: t.stats.projects },
                 { number: "7+", label: t.stats.technologies },
               ].map((stat, i) => (
