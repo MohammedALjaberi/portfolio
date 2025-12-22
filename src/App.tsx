@@ -3,20 +3,30 @@
  * Assembles all portfolio sections using semantic HTML structure
  */
 
+import { Suspense, lazy } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
-import Skills from "./components/Skills/Skills";
-import Projects from "./components/Projects/Projects";
-import Experience from "./components/Experience/Experience";
-import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import usePortfolioStore from "./store/usePortfolioStore";
+
+// Lazy load below-the-fold components
+const Skills = lazy(() => import("./components/Skills/Skills"));
+const Projects = lazy(() => import("./components/Projects/Projects"));
+const Experience = lazy(() => import("./components/Experience/Experience"));
+const Contact = lazy(() => import("./components/Contact/Contact"));
 
 import { Toaster } from "sonner";
 
 function App() {
   const { theme, language } = usePortfolioStore();
+
+  const LoadingFallback = () => (
+    <div className="flex items-center justify-center w-full h-40">
+      <div className="w-8 h-8 border-4 border-[var(--color-accent-primary)] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+
   return (
     <>
       <div
@@ -47,17 +57,19 @@ function App() {
           {/* About Section */}
           <About />
 
-          {/* Skills Section */}
-          <Skills />
+          <Suspense fallback={<LoadingFallback />}>
+            {/* Skills Section */}
+            <Skills />
 
-          {/* Projects Portfolio */}
-          <Projects />
+            {/* Projects Portfolio */}
+            <Projects />
 
-          {/* Experience Timeline */}
-          <Experience />
+            {/* Experience Timeline */}
+            <Experience />
 
-          {/* Contact Form & Info */}
-          <Contact />
+            {/* Contact Form & Info */}
+            <Contact />
+          </Suspense>
         </main>
 
         {/* Footer */}
