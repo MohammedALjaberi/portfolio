@@ -30,20 +30,20 @@ const Contact = () => {
   const contactInfo = [
     {
       label: t.contact.email,
-      value: "mohammed.aljaberi@email.com",
-      href: "mailto:mohammed.aljaberi@email.com",
+      value: "aljabri606@gmail.com",
+      href: "mailto:aljabri606@gmail.com",
       icon: <EmailIcon />,
     },
     {
       label: t.contact.linkedin,
-      value: "linkedin.com/in/mohdja",
-      href: "https://linkedin.com/in/mohdja",
+      value: "linkedin.com/in/mohammed-aljaberi",
+      href: "https://www.linkedin.com/in/mohammed-aljaberi/",
       icon: <LinkedInIcon />,
     },
     {
       label: t.contact.github,
-      value: "github.com/mohdja",
-      href: "https://github.com/mohdja",
+      value: "github.com/MohammedALjaberi",
+      href: "https://github.com/MohammedALjaberi",
       icon: <GitHubIcon />,
     },
   ];

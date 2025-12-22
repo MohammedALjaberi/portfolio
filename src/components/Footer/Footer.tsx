@@ -13,17 +13,17 @@ import { TRANS } from "../../constants/translations";
 const SOCIAL_LINKS = [
   {
     name: "GitHub",
-    href: "https://github.com/mohdja",
+    href: "https://github.com/MohammedALjaberi",
     icon: <GitHubIcon />,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/mohdja",
+    href: "https://www.linkedin.com/in/mohammed-aljaberi/",
     icon: <LinkedInIcon />,
   },
   {
     name: "Email",
-    href: "mailto:mohammed.aljaberi@email.com",
+    href: "mailto:aljabri606@gmail.com",
     icon: <EmailIcon />,
   },
 ];

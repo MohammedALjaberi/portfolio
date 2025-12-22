@@ -189,7 +189,7 @@ const Hero = () => {
         </p>
 
         {/* Name */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-normal min-h-[120px] md:min-h-[90px] flex items-center justify-center">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight md:leading-normal min-h-[120px] md:min-h-[90px] flex items-center justify-center">
           <span ref={nameTextRef} className="text-[var(--color-text-primary)]">
             {/* Text typed by GSAP */}
           </span>
@@ -197,7 +197,7 @@ const Hero = () => {
 
         {/* Title */}
         <div className="mb-8 min-h-[60px] md:min-h-[50px] flex justify-center items-center">
-          <h2 className="text-2xl md:text-4xl font-bold relative inline-block leading-normal">
+          <h2 className="text-2xl md:text-4xl font-bold relative inline-block leading-tight md:leading-normal">
             <span className="gradient-text">
               <span ref={titleTextRef}>{/* Typed text */}</span>
             </span>
