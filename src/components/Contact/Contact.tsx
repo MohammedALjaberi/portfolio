@@ -165,26 +165,28 @@ const Contact = () => {
     setIsSending(true);
 
     try {
-      // Replace with your EmailJS service ID, template ID, and public key
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
-        console.error("EmailJS keys are missing! Please check your .env file.");
-        alert(
-          "Sorry, the contact form is not configured yet. Please email me directly."
-        );
+        alert("Configuration missing. Please check .env file.");
         setIsSending(false);
         return;
       }
 
-      await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current!,
-        publicKey
-      );
+      // Explicitly map form data to common EmailJS template variables
+      const templateParams = {
+        from_name: formData.name,
+        user_name: formData.name, // Fallback
+        to_name: "Mohammed Aljaberi",
+        from_email: formData.email,
+        email: formData.email, // Fallback
+        reply_to: formData.email,
+        message: formData.message,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       alert(t.contact.alertSuccess);
       setFormData({ name: "", email: "", message: "" });
