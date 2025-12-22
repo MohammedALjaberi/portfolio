@@ -28,42 +28,42 @@ const SKILLS = [
     icon: <LanguageIcon sx={{ fontSize: 28 }} />,
     name: "HTML & CSS",
     description:
-      "Semantic HTML5, CSS3, Flexbox, Grid, responsive design, and modern CSS features.",
+      "Semantic HTML5, CSS3, Flexbox, Grid, responsive design, and modern CSS features",
     tags: ["HTML5", "CSS3", "Flexbox", "Grid"],
   },
   {
     icon: <BoltIcon sx={{ fontSize: 28 }} />,
     name: "JavaScript",
     description:
-      "ES6+ features, DOM manipulation, async programming, and modern JavaScript patterns.",
+      "ES6+ features, DOM manipulation, async programming, and modern JavaScript patterns",
     tags: ["ES6+", "Async/Await", "DOM APIs"],
   },
   {
     icon: <CodeIcon sx={{ fontSize: 28 }} />,
     name: "React",
     description:
-      "Component-based architecture, hooks, state management, and building interactive UIs.",
-    tags: ["Hooks", "Components", "JSX"],
+      "Component-based architecture, hooks, state management, and building interactive UIs",
+    tags: ["Hooks", "Components", "TypeScript"],
   },
   {
     icon: <GitHubIcon sx={{ fontSize: 28 }} />,
     name: "Git & GitHub",
     description:
-      "Version control, branching strategies, pull requests, and collaborative workflows.",
+      "Version control, branching strategies, pull requests, and collaborative workflows",
     tags: ["Git", "GitHub", "Version Control"],
   },
   {
     icon: <ApiIcon sx={{ fontSize: 28 }} />,
     name: "API Integration",
     description:
-      "RESTful APIs, fetch, axios, handling responses, and integrating third-party services.",
-    tags: ["REST", "Fetch", "Axios"],
+      "RESTful APIs, React Query, handling responses, and integrating third-party services",
+    tags: ["React Query", "REST", "Axios"],
   },
   {
     icon: <StorageIcon sx={{ fontSize: 28 }} />,
     name: "State Management",
     description:
-      "Managing application state with Zustand, Context API, and other solutions.",
+      "Managing application state with Zustand, Context API, and other solutions",
     tags: ["Zustand", "Context API", "Redux"],
   },
 ];
