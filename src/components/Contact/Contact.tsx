@@ -223,37 +223,12 @@ const Contact = () => {
 
         <div
           ref={contentRef}
-          className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-[1000px] mx-auto items-center"
+          className="flex flex-col md:flex-row gap-8 md:gap-12 max-w-[1000px] mx-auto items-start"
         >
-          {/* Contact Information */}
-          <div className="space-y-4">
-            {contactInfo.map((contact, index) => (
-              <a
-                key={index}
-                href={contact.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:border-[#1ae66b] hover:translate-x-2 hover:bg-[var(--color-bg-tertiary)]"
-              >
-                <div className="w-12 h-12 rounded-xl bg-transparent border border-gray-600 flex items-center justify-center text-[#1ae66b] flex-shrink-0 transition-colors duration-300 group-hover:border-[#1ae66b]">
-                  {contact.icon}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm text-[var(--color-text-muted)]">
-                    {contact.label}
-                  </p>
-                  <p className="text-[var(--color-text-primary)] font-medium truncate">
-                    {contact.value}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-
           {/* Contact Form */}
           <form
             ref={formRef}
-            className="space-y-4"
+            className="w-full md:w-1/2 space-y-4"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
@@ -315,21 +290,48 @@ const Contact = () => {
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-gray-600 text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? (
-                <span>{t.contact.sending}</span>
-              ) : (
-                <>
-                  <SendIcon />
-                  {t.contact.send}
-                </>
-              )}
-            </button>
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-gray-600 text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <span>{t.contact.sending}</span>
+                ) : (
+                  <>
+                    <SendIcon />
+                    {t.contact.send}
+                  </>
+                )}
+              </button>
+            </div>
           </form>
+
+          {/* Contact Information */}
+          <div className="w-full md:w-1/2 space-y-4 md:mt-8">
+            {contactInfo.map((contact, index) => (
+              <a
+                key={index}
+                href={contact.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group glass flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:border-[#1ae66b] hover:translate-x-2 hover:bg-[var(--color-bg-tertiary)]"
+              >
+                <div className="w-12 h-12 rounded-xl bg-transparent border border-gray-600 flex items-center justify-center text-[#1ae66b] flex-shrink-0 transition-colors duration-300 group-hover:border-[#1ae66b]">
+                  {contact.icon}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm text-[var(--color-text-muted)]">
+                    {contact.label}
+                  </p>
+                  <p className="text-[var(--color-text-primary)] font-medium truncate">
+                    {contact.value}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

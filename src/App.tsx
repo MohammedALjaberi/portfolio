@@ -27,6 +27,12 @@ function App() {
     </div>
   );
 
+  // Update document direction based on language
+  if (typeof document !== "undefined") {
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = language;
+  }
+
   return (
     <>
       <div
