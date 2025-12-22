@@ -134,7 +134,7 @@ const Projects = () => {
         {PROJECTS.map((project, index) => (
           <div
             key={index}
-            className="project-panel w-full min-h-[auto] py-16 lg:py-0 flex flex-col lg:flex-row items-center justify-center p-4 lg:p-8 relative lg:w-screen lg:h-screen lg:flex-shrink-0"
+            className="project-panel w-full min-h-[auto] py-6 lg:py-0 flex flex-col lg:flex-row items-center justify-center p-4 lg:p-8 relative lg:w-screen lg:h-screen lg:flex-shrink-0"
           >
             {/* Background Orbs (Subtle) */}
             <div
