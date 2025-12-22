@@ -52,7 +52,7 @@ const Footer = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-xl bg-transparent border border-gray-600 flex items-center justify-center text-[#1ae66b] transition-all duration-300 hover:border-[#1ae66b] hover:-translate-y-1"
+              className="w-12 h-12 rounded-xl bg-transparent border border-[#1ae66b] flex items-center justify-center text-[#1ae66b] transition-all duration-300 hover:border-[#1ae66b] hover:-translate-y-1"
               aria-label={social.name}
             >
               {social.icon}
