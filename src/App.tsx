@@ -19,7 +19,7 @@ function App() {
       <Navbar />
 
       {/* Main Content - Semantic HTML for SEO */}
-      <main>
+      <main className="w-full overflow-x-hidden">
         {/* Hero/Landing Section */}
         <Hero />
 
