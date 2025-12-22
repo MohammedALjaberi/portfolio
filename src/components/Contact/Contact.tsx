@@ -1,5 +1,6 @@
 import { toast } from "sonner";
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import emailjs from "@emailjs/browser";
@@ -13,7 +14,7 @@ import { TRANS } from "../../constants/translations";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface FormData {
+interface ContactFormInputs {
   name: string;
   email: string;
   message: string;
@@ -45,12 +46,13 @@ const Contact = () => {
     },
   ];
 
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSending, setIsSending] = useState(false);
+  /* Removed manual formData state */
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormInputs>();
 
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -154,51 +156,35 @@ const Contact = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  /* Removed handleInputChange */
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSending(true);
-
+  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
-        alert("Configuration missing. Please check .env file.");
-        setIsSending(false);
+        toast.error("Configuration missing. Please check .env file.");
         return;
       }
 
-      // Explicitly map form data to common EmailJS template variables
       const templateParams = {
-        from_name: formData.name,
-        user_name: formData.name, // Fallback
+        from_name: data.name,
+        user_name: data.name,
         to_name: "Mohammed Aljaberi",
-        from_email: formData.email,
-        email: formData.email, // Fallback
-        reply_to: formData.email,
-        message: formData.message,
+        from_email: data.email,
+        email: data.email,
+        reply_to: data.email,
+        message: data.message,
       };
 
-      // ... existing imports ...
-
-      // ... inside handleSubmit ...
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       toast.success(t.contact.alertSuccess);
-      setFormData({ name: "", email: "", message: "" });
+      reset();
     } catch (error) {
-      console.error("EmailJS Error:", error);
       toast.error("Failed to send message. Please try again later.");
-    } finally {
-      setIsSending(false);
     }
   };
 
@@ -265,7 +251,11 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
+          <form
+            ref={formRef}
+            className="space-y-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div>
               <label
                 htmlFor="name"
@@ -274,14 +264,14 @@ const Contact = () => {
                 {t.contact.nameLabel}
               </label>
               <input
-                type="text"
                 id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-[var(--color-bg-glass)] border border-[var(--color-border)] rounded-xl text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[#1ae66b] focus:ring-2 focus:ring-[rgba(26,230,107,0.3)] outline-none transition-all"
+                {...register("name", { required: true })}
+                className={`w-full px-4 py-3 bg-[var(--color-bg-glass)] border rounded-xl text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] outline-none transition-all ${
+                  errors.name
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-[var(--color-border)] focus:border-[#1ae66b] focus:ring-2 focus:ring-[rgba(26,230,107,0.3)]"
+                }`}
                 placeholder={t.contact.namePlaceholder}
-                required
               />
             </div>
 
@@ -293,14 +283,15 @@ const Contact = () => {
                 {t.contact.emailLabel}
               </label>
               <input
-                type="email"
                 id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-[var(--color-bg-glass)] border border-[var(--color-border)] rounded-xl text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[#1ae66b] focus:ring-2 focus:ring-[rgba(26,230,107,0.3)] outline-none transition-all"
+                type="email"
+                {...register("email", { required: true })}
+                className={`w-full px-4 py-3 bg-[var(--color-bg-glass)] border rounded-xl text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] outline-none transition-all ${
+                  errors.email
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-[var(--color-border)] focus:border-[#1ae66b] focus:ring-2 focus:ring-[rgba(26,230,107,0.3)]"
+                }`}
                 placeholder={t.contact.emailPlaceholder}
-                required
               />
             </div>
 
@@ -313,23 +304,24 @@ const Contact = () => {
               </label>
               <textarea
                 id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
+                {...register("message", { required: true })}
                 rows={5}
-                className="w-full px-4 py-3 bg-[var(--color-bg-glass)] border border-[var(--color-border)] rounded-xl text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[#1ae66b] focus:ring-2 focus:ring-[rgba(26,230,107,0.3)] outline-none transition-all resize-y min-h-[140px]"
+                className={`w-full px-4 py-3 bg-[var(--color-bg-glass)] border rounded-xl text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] outline-none transition-all resize-y min-h-[140px] ${
+                  errors.message
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-[var(--color-border)] focus:border-[#1ae66b] focus:ring-2 focus:ring-[rgba(26,230,107,0.3)]"
+                }`}
                 placeholder={t.contact.messagePlaceholder}
-                required
               />
             </div>
 
             <button
               type="submit"
-              disabled={isSending}
+              disabled={isSubmitting}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-transparent border border-gray-600 text-[#1ae66b] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1ae66b] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSending ? (
-                <span>Sending...</span>
+              {isSubmitting ? (
+                <span>{t.contact.sending}</span>
               ) : (
                 <>
                   <SendIcon />
