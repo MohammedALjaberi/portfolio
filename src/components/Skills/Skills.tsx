@@ -108,9 +108,6 @@ const Skills = () => {
           <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4 leading-normal">
             {t.skills.title}
           </h2>
-          <p className="text-[var(--color-text-secondary)]">
-            {t.skills.description}
-          </p>
         </div>
 
         {/* Skills Grid */}
