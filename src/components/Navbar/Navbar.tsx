@@ -121,14 +121,14 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 transform
-          ${isScrolled ? "scale-[0.98] opacity-95" : "scale-100 opacity-100"}
+          ${isScrolled ? "scale-[0.98] opacity-100" : "scale-100 opacity-100"}
         `}
         style={{ width: "max-content", maxWidth: "90vw" }}
       >
         <div
           className={`
           flex items-center justify-between gap-4 md:gap-8 px-4 md:px-6 py-3 rounded-full 
-          backdrop-blur-md bg-[var(--color-bg-glass)] border border-[var(--color-border)]
+          bg-[var(--color-bg-secondary)] border border-[var(--color-border)]
           shadow-lg shadow-[rgba(0,0,0,0.1)] transition-all duration-300
         `}
         >
@@ -198,7 +198,7 @@ const Navbar = () => {
       {/* Mobile Navigation Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 w-[90vw] max-w-[350px] z-40 animate-[fadeInUp_0.3s_ease]">
-          <div className="bg-[var(--color-bg-secondary)]/95 backdrop-blur-xl p-4 rounded-2xl border border-[var(--color-border)] shadow-2xl">
+          <div className="bg-[var(--color-bg-secondary)] p-4 rounded-2xl border border-[var(--color-border)] shadow-2xl">
             <ul className="flex flex-col gap-2 list-none">
               {navLinks.map((link) => (
                 <li key={link.href}>
