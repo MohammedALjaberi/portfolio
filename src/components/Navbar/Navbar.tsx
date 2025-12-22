@@ -151,7 +151,7 @@ const Navbar = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap ${
                     activeSection === link.href
                       ? "text-[var(--color-text-primary)] bg-[var(--color-border)] shadow-sm"
                       : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-tertiary)]"
