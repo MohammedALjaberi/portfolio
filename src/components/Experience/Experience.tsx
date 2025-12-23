@@ -1,8 +1,3 @@
-/**
- * Experience Section Component
- * Uses TailwindCSS, Material Icons, and GSAP
- */
-
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

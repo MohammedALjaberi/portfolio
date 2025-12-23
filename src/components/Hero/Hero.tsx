@@ -1,12 +1,3 @@
-/**
- * Hero Section Component
- * All text elements use Typewriter animation (Writing effect)
- * - Greeting: Typewriter
- * - Name: Typewriter
- * - Title: Typewriter
- * - Bio: Typewriter
- */
-
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";

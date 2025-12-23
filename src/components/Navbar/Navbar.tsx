@@ -1,9 +1,3 @@
-/**
- * Navbar Component
- * Floating, pill-shaped navigation with smooth glassmorphism
- * Refactored to use Zustand for state management
- */
-
 import React, { useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";

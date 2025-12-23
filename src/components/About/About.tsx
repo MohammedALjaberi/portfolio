@@ -1,8 +1,3 @@
-/**
- * About Section Component
- * Updated with gradient-masked Memoji for truly seamless integration
- */
-
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

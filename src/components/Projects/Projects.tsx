@@ -1,9 +1,3 @@
-/**
- * Projects Section Component
- * Implements full-screen horizontal scroll slides using GSAP ScrollTrigger
- * Styles match the application's dark theme
- */
-
 import { useEffect, useRef, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,6 +22,7 @@ import {
   SiReactrouter,
   SiZod,
   SiReacthookform,
+  SiVuedotjs,
 } from "react-icons/si";
 import usePortfolioStore from "../../store/usePortfolioStore";
 import { TRANS } from "../../constants/translations";
@@ -41,6 +36,23 @@ const Projects = () => {
   // Memoize projects data to prevent unnecessary re-renders while accessing translations
   const projects = useMemo(
     () => [
+      {
+        name: "KSA Weather App",
+        description: t.projects.projectsList.KSAWeather.description,
+        techStack: [
+          { name: "Vue.js", icon: <SiVuedotjs /> },
+          { name: "TypeScript", icon: <SiTypescript /> },
+          { name: "TailwindCSS", icon: <SiTailwindcss /> },
+        ],
+        github: "https://github.com/MohammedALjaberi/weatherapp",
+        live: "https://ksaweatherapp.vercel.app",
+        icon: (
+          <WbSunnyIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
+        ),
+        accent: "#1ae66b",
+      },
       {
         name: "Healing",
         description: t.projects.projectsList.Healing.description,

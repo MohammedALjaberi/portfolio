@@ -62,6 +62,10 @@ export const TRANS = {
       view: "View Project",
       repo: "GitHub Repo",
       projectsList: {
+        KSAWeather: {
+          description:
+            "A modern weather application built with Vue.js and TypeScript, designed specifically for KSA users with real-time forecasts.",
+        },
         Healing: {
           description:
             "A comprehensive online therapy platform connecting patients with licensed therapists, featuring appointment booking, secure chat, and educational resources.",
@@ -157,6 +161,10 @@ export const TRANS = {
       view: "عرض المشروع",
       repo: "مستودع GitHub",
       projectsList: {
+        KSAWeather: {
+          description:
+            "تطبيق طقس حديث مبني باستخدام Vue.js و TypeScript، مصمم خصيصًا لمستخدمي المملكة العربية السعودية مع تنبؤات فورية.",
+        },
         Healing: {
           description:
             "منصة علاج نفسي شاملة تربط المرضى بالمعالجين المرخصين، وتتميز بحجز المواعيد والدردشة الآمنة والموارد التعليمية.",
