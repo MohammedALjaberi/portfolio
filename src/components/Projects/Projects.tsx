@@ -74,7 +74,7 @@ const Projects = () => {
           { name: "MongoDB", icon: <SiMongodb /> },
         ],
         github: "https://github.com/MohammedALjaberi/batodo-app",
-        live: "https://todo-app-lilac-theta.vercel.app/tasks",
+        live: "https://todo-app-lilac-theta.vercel.app/",
         icon: (
           <TaskAltIcon
             sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
