@@ -61,6 +61,16 @@ export const TRANS = {
       title: "Featured Projects",
       view: "View Project",
       repo: "GitHub Repo",
+      projectsList: {
+        Healing: {
+          description:
+            "A comprehensive online therapy platform connecting patients with licensed therapists, featuring appointment booking, secure chat, and educational resources.",
+        },
+        TaskManagement: {
+          description:
+            "A feature-rich task management application enabling users to organize, track, and categorize tasks efficiently with a modern, responsive interface.",
+        },
+      },
     },
     contact: {
       title: "Get In Touch",
@@ -146,6 +156,16 @@ export const TRANS = {
       title: "مشاريع مميزة",
       view: "عرض المشروع",
       repo: "مستودع GitHub",
+      projectsList: {
+        Healing: {
+          description:
+            "منصة علاج نفسي شاملة تربط المرضى بالمعالجين المرخصين، وتتميز بحجز المواعيد والدردشة الآمنة والموارد التعليمية.",
+        },
+        TaskManagement: {
+          description:
+            "تطبيق إدارة مهام غني بالميزات يتيح للمستخدمين تنظيم المهام وتتبعها وتصنيفها بكفاءة مع واجهة حديثة وسريعة الاستجابة.",
+        },
+      },
     },
     contact: {
       title: "تواصل معي",

@@ -4,7 +4,7 @@
  * Styles match the application's dark theme
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -13,70 +13,134 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
+import CodeIcon from "@mui/icons-material/Code";
+import {
+  SiTypescript,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiStorybook,
+  SiJest,
+  SiReact,
+  SiExpress,
+  SiPrisma,
+  SiMongodb,
+  SiShadcnui,
+  SiReactrouter,
+  SiZod,
+  SiReacthookform,
+} from "react-icons/si";
 import usePortfolioStore from "../../store/usePortfolioStore";
 import { TRANS } from "../../constants/translations";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ... (Projects data left static for now as descriptions are complex to map without full data structure update) ...
-const PROJECTS = [
-  {
-    name: "E-Commerce Dashboard",
-    description:
-      "A modern admin dashboard for managing products, orders, and customers. Built with React and features real-time data visualization.",
-    techStack: ["React", "TailwindCSS", "Chart.js", "REST API"],
-    github: "https://github.com/mohdja",
-    live: "#",
-    icon: (
-      <DashboardIcon
-        sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
-      />
-    ),
-    accent: "#1ae66b",
-  },
-  {
-    name: "Task Management App",
-    description:
-      "A productivity app for organizing tasks with drag-and-drop functionality, categories, and deadline reminders.",
-    techStack: ["React", "Zustand", "LocalStorage", "CSS"],
-    github: "https://github.com/mohdja",
-    live: "#",
-    icon: (
-      <TaskAltIcon sx={{ fontSize: 80, color: "var(--color-text-primary)" }} />
-    ),
-    accent: "#1ae66b",
-  },
-  {
-    name: "Weather Application",
-    description:
-      "Real-time weather app with location-based forecasts, beautiful UI animations, and detailed weather metrics.",
-    techStack: ["JavaScript", "Weather API", "CSS3", "Geolocation"],
-    github: "https://github.com/mohdja",
-    live: "#",
-    icon: (
-      <WbSunnyIcon sx={{ fontSize: 80, color: "var(--color-text-primary)" }} />
-    ),
-    accent: "#1ae66b",
-  },
-  {
-    name: "Recipe Finder",
-    description:
-      "Search and discover recipes from around the world. Save favorites and get detailed cooking instructions.",
-    techStack: ["React", "API Integration", "Responsive Design"],
-    github: "https://github.com/mohdja",
-    live: "#",
-    icon: (
-      <RestaurantIcon
-        sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
-      />
-    ),
-    accent: "#1ae66b",
-  },
-];
-
 const Projects = () => {
   const { language } = usePortfolioStore();
   const t = TRANS[language];
+
+  // Memoize projects data to prevent unnecessary re-renders while accessing translations
+  const projects = useMemo(
+    () => [
+      {
+        name: "Healing",
+        description: t.projects.projectsList.Healing.description,
+        techStack: [
+          { name: "Next.js", icon: <SiNextdotjs /> },
+          { name: "TypeScript", icon: <SiTypescript /> },
+          { name: "TailwindCSS", icon: <SiTailwindcss /> },
+          { name: "Storybook", icon: <SiStorybook /> },
+          { name: "Jest", icon: <SiJest /> },
+        ],
+        github: "https://github.com/MohammedALjaberi/iDev",
+        live: "https://idev-sigma.vercel.app/",
+        icon: (
+          <CodeIcon sx={{ fontSize: 80, color: "var(--color-text-primary)" }} />
+        ),
+        accent: "#1ae66b",
+      },
+      {
+        name: "Task Management",
+        description: t.projects.projectsList.TaskManagement.description,
+        techStack: [
+          { name: "React", icon: <SiReact /> },
+          { name: "TailwindCSS", icon: <SiTailwindcss /> },
+          { name: "shadcn/ui", icon: <SiShadcnui /> },
+          { name: "Zustand", icon: null }, // no icon
+          { name: "React Router", icon: <SiReactrouter /> },
+          { name: "Zod", icon: <SiZod /> },
+          { name: "React Hook Form", icon: <SiReacthookform /> },
+          { name: "Express.js", icon: <SiExpress /> },
+          { name: "Prisma", icon: <SiPrisma /> },
+          { name: "MongoDB", icon: <SiMongodb /> },
+        ],
+        github: "https://github.com/MohammedALjaberi/batodo-app",
+        live: "https://todo-app-lilac-theta.vercel.app/tasks",
+        icon: (
+          <TaskAltIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
+        ),
+        accent: "#1ae66b",
+      },
+      {
+        name: "E-Commerce Dashboard",
+        description:
+          "A modern admin dashboard for managing products, orders, and customers. Built with React and features real-time data visualization.",
+        techStack: ["React", "TailwindCSS", "Chart.js", "REST API"],
+        github: "https://github.com/mohdja",
+        live: "#",
+        icon: (
+          <DashboardIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
+        ),
+        accent: "#1ae66b",
+      },
+      {
+        name: "Task Management App",
+        description:
+          "A productivity app for organizing tasks with drag-and-drop functionality, categories, and deadline reminders.",
+        techStack: ["React", "Zustand", "LocalStorage", "CSS"],
+        github: "https://github.com/mohdja",
+        live: "#",
+        icon: (
+          <TaskAltIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
+        ),
+        accent: "#1ae66b",
+      },
+      {
+        name: "Weather Application",
+        description:
+          "Real-time weather app with location-based forecasts, beautiful UI animations, and detailed weather metrics.",
+        techStack: ["JavaScript", "Weather API", "CSS3", "Geolocation"],
+        github: "https://github.com/mohdja",
+        live: "#",
+        icon: (
+          <WbSunnyIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
+        ),
+        accent: "#1ae66b",
+      },
+      {
+        name: "Recipe Finder",
+        description:
+          "Search and discover recipes from around the world. Save favorites and get detailed cooking instructions.",
+        techStack: ["React", "API Integration", "Responsive Design"],
+        github: "https://github.com/mohdja",
+        live: "#",
+        icon: (
+          <RestaurantIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
+        ),
+        accent: "#1ae66b",
+      },
+    ],
+    [t]
+  );
 
   const component = useRef<HTMLElement>(null);
   const slider = useRef<HTMLDivElement>(null);
@@ -98,7 +162,7 @@ const Projects = () => {
             trigger: slider.current,
             pin: true,
             scrub: 1,
-            snap: 1 / (PROJECTS.length - 1),
+            snap: 1 / (projects.length - 1),
             start: "top top",
             end: () => "+=" + moveDistance,
             invalidateOnRefresh: true,
@@ -108,7 +172,7 @@ const Projects = () => {
     });
 
     return () => mm.revert();
-  }, [language]);
+  }, [language, projects.length]);
 
   return (
     <section
@@ -127,11 +191,11 @@ const Projects = () => {
         className="flex flex-col lg:flex-row w-full lg:w-[var(--desktop-width)] lg:h-screen bg-[var(--color-bg-secondary)]"
         style={
           {
-            "--desktop-width": `${PROJECTS.length * 100}vw`,
+            "--desktop-width": `${projects.length * 100}vw`,
           } as React.CSSProperties
         }
       >
-        {PROJECTS.map((project, index) => (
+        {projects.map((project, index) => (
           <div
             key={index}
             className="project-panel w-full min-h-[auto] py-6 lg:py-0 flex flex-col lg:flex-row items-center justify-center p-4 lg:p-8 relative lg:w-screen lg:h-screen lg:flex-shrink-0"
@@ -177,9 +241,16 @@ const Projects = () => {
                   {project.techStack.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 text-sm bg-[var(--color-bg-tertiary)] rounded-lg text-[var(--color-text-primary)] border border-[var(--color-border)]"
+                      className="inline-flex items-center gap-1 px-3 py-1 text-sm bg-[var(--color-bg-tertiary)] rounded-lg text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors"
                     >
-                      {tech}
+                      {typeof tech === "string" ? (
+                        tech
+                      ) : (
+                        <>
+                          <span className="text-lg">{tech.icon}</span>
+                          <span>{tech.name}</span>
+                        </>
+                      )}
                     </span>
                   ))}
                 </div>
