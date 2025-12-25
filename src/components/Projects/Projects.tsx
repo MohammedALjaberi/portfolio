@@ -37,23 +37,6 @@ const Projects = () => {
   const projects = useMemo(
     () => [
       {
-        name: "KSA Weather App",
-        description: t.projects.projectsList.KSAWeather.description,
-        techStack: [
-          { name: "Vue.js", icon: <SiVuedotjs /> },
-          { name: "TypeScript", icon: <SiTypescript /> },
-          { name: "TailwindCSS", icon: <SiTailwindcss /> },
-        ],
-        github: "https://github.com/MohammedALjaberi/weatherapp",
-        live: "https://ksaweatherapp.vercel.app",
-        icon: (
-          <WbSunnyIcon
-            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
-          />
-        ),
-        accent: "#1ae66b",
-      },
-      {
         name: "Healing",
         description: t.projects.projectsList.Healing.description,
         techStack: [
@@ -67,6 +50,23 @@ const Projects = () => {
         live: "https://idev-sigma.vercel.app/",
         icon: (
           <CodeIcon sx={{ fontSize: 80, color: "var(--color-text-primary)" }} />
+        ),
+        accent: "#1ae66b",
+      },
+      {
+        name: "Weather App",
+        description: t.projects.projectsList.KSAWeather.description,
+        techStack: [
+          { name: "Vue.js", icon: <SiVuedotjs /> },
+          { name: "TypeScript", icon: <SiTypescript /> },
+          { name: "TailwindCSS", icon: <SiTailwindcss /> },
+        ],
+        github: "https://github.com/MohammedALjaberi/weatherapp",
+        live: "https://ksaweatherapp.vercel.app",
+        icon: (
+          <WbSunnyIcon
+            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
+          />
         ),
         accent: "#1ae66b",
       },
@@ -108,34 +108,7 @@ const Projects = () => {
         ),
         accent: "#1ae66b",
       },
-      {
-        name: "Task Management App",
-        description:
-          "A productivity app for organizing tasks with drag-and-drop functionality, categories, and deadline reminders.",
-        techStack: ["React", "Zustand", "LocalStorage", "CSS"],
-        github: "https://github.com/mohdja",
-        live: "#",
-        icon: (
-          <TaskAltIcon
-            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
-          />
-        ),
-        accent: "#1ae66b",
-      },
-      {
-        name: "Weather Application",
-        description:
-          "Real-time weather app with location-based forecasts, beautiful UI animations, and detailed weather metrics.",
-        techStack: ["JavaScript", "Weather API", "CSS3", "Geolocation"],
-        github: "https://github.com/mohdja",
-        live: "#",
-        icon: (
-          <WbSunnyIcon
-            sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
-          />
-        ),
-        accent: "#1ae66b",
-      },
+
       {
         name: "Recipe Finder",
         description:

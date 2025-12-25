@@ -64,7 +64,7 @@ export const TRANS = {
       projectsList: {
         KSAWeather: {
           description:
-            "A modern weather application built with Vue.js and TypeScript, designed specifically for KSA users with real-time forecasts.",
+            "A modern weather application designed for KSA users with real-time forecasts.",
         },
         Healing: {
           description:
