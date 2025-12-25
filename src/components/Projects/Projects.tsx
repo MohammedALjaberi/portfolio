@@ -195,7 +195,7 @@ const Projects = () => {
               }}
             ></div>
 
-            <div className="max-w-[1000px] w-full grid lg:grid-cols-2 gap-6 lg:gap-12 items-center relative z-10 glass p-5 lg:p-10 rounded-2xl lg:rounded-3xl border border-[var(--color-border)]">
+            <div className="max-w-[1000px] w-full grid lg:grid-cols-2 gap-6 lg:gap-12 relative z-10 glass p-5 lg:p-10 rounded-2xl lg:rounded-3xl border border-[var(--color-border)] lg:h-[450px]">
               {/* Visual Side */}
               <div className="flex items-center justify-center aspect-square lg:aspect-auto h-40 lg:h-full bg-[var(--color-bg-tertiary)] rounded-2xl border border-[var(--color-border)] relative overflow-hidden group">
                 <div
@@ -210,8 +210,8 @@ const Projects = () => {
               </div>
 
               {/* Content Side */}
-              <div className="text-[var(--color-text-primary)]">
-                <span className="inline-block px-3 py-1 rounded-full bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-xs font-medium mb-4">
+              <div className="text-[var(--color-text-primary)] flex flex-col justify-center h-full">
+                <span className="inline-block px-3 py-1 rounded-full bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-xs font-medium mb-4 w-fit">
                   {t.projects.title} 0{index + 1}
                 </span>
 
@@ -240,7 +240,7 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <div className="flex gap-3 lg:gap-4">
+                <div className="flex gap-3 lg:gap-4 mt-auto lg:mt-0">
                   <a
                     href={project.github}
                     target="_blank"

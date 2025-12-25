@@ -163,7 +163,7 @@ export const TRANS = {
       projectsList: {
         KSAWeather: {
           description:
-            "تطبيق طقس حديث مبني باستخدام Vue.js و TypeScript، مصمم خصيصًا لمستخدمي المملكة العربية السعودية مع تنبؤات فورية.",
+            "تطبيق طقس حديث مصمم خصيصًا لمستخدمي المملكة العربية السعودية مع تنبؤات فورية.",
         },
         Healing: {
           description:
