@@ -195,7 +195,7 @@ const Projects = () => {
               }}
             ></div>
 
-            <div className="max-w-[1000px] w-full grid lg:grid-cols-2 gap-6 lg:gap-12 relative z-10 glass p-5 lg:p-10 rounded-2xl lg:rounded-3xl border border-[var(--color-border)] lg:h-[450px]">
+            <div className="max-w-[1000px] w-full grid lg:grid-cols-2 gap-4 lg:gap-8 relative z-10 glass p-5 lg:p-8 rounded-2xl lg:rounded-3xl border border-[var(--color-border)] lg:h-[450px]">
               {/* Visual Side */}
               <div className="flex items-center justify-center aspect-square lg:aspect-auto h-40 lg:h-full bg-[var(--color-bg-tertiary)] rounded-2xl border border-[var(--color-border)] relative overflow-hidden group">
                 <div
@@ -211,28 +211,28 @@ const Projects = () => {
 
               {/* Content Side */}
               <div className="text-[var(--color-text-primary)] flex flex-col justify-center h-full">
-                <span className="inline-block px-3 py-1 rounded-full bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-xs font-medium mb-4 w-fit">
+                <span className="inline-block px-3 py-1 rounded-full bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-xs font-medium mb-3 w-fit">
                   {t.projects.title} 0{index + 1}
                 </span>
 
-                <h3 className="text-2xl lg:text-5xl font-bold mb-2 lg:mb-4">
+                <h3 className="text-2xl lg:text-4xl font-bold mb-2 lg:mb-3">
                   {project.name}
                 </h3>
-                <p className="text-sm lg:text-lg text-[var(--color-text-secondary)] leading-relaxed mb-4 lg:mb-6">
+                <p className="text-sm lg:text-base text-[var(--color-text-secondary)] leading-relaxed mb-4 lg:mb-5 line-clamp-3">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.techStack.map((tech, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1 px-3 py-1 text-sm bg-[var(--color-bg-tertiary)] rounded-lg text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors"
+                      className="inline-flex items-center gap-1 px-2 py-1 text-xs lg:text-sm bg-[var(--color-bg-tertiary)] rounded-lg text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors"
                     >
                       {typeof tech === "string" ? (
                         tech
                       ) : (
                         <>
-                          <span className="text-lg">{tech.icon}</span>
+                          <span className="text-base">{tech.icon}</span>
                           <span>{tech.name}</span>
                         </>
                       )}
@@ -245,17 +245,17 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 bg-[var(--color-text-primary)] text-[var(--color-bg-primary)] rounded-xl text-sm lg:text-base font-bold hover:scale-105 transition-transform"
+                    className="flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 bg-[var(--color-text-primary)] text-[var(--color-bg-primary)] rounded-xl text-sm font-bold hover:scale-105 transition-transform"
                   >
-                    <GitHubIcon sx={{ fontSize: 20 }} /> {t.projects.repo}
+                    <GitHubIcon sx={{ fontSize: 18 }} /> {t.projects.repo}
                   </a>
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 lg:px-6 py-2 lg:py-3 bg-[var(--color-bg-glass)] text-[var(--color-text-primary)] border border-[var(--color-border)] rounded-xl text-sm lg:text-base font-bold hover:bg-[var(--color-bg-tertiary)] transition-colors"
+                    className="flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 bg-[var(--color-bg-glass)] text-[var(--color-text-primary)] border border-[var(--color-border)] rounded-xl text-sm font-bold hover:bg-[var(--color-bg-tertiary)] transition-colors"
                   >
-                    <LaunchIcon sx={{ fontSize: 20 }} /> {t.projects.view}
+                    <LaunchIcon sx={{ fontSize: 18 }} /> {t.projects.view}
                   </a>
                 </div>
               </div>
