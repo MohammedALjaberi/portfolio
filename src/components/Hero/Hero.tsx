@@ -150,6 +150,24 @@ const Hero = () => {
     return () => ctx.revert();
   }, [language]); // Re-run animation when language changes
 
+  // Hide scroll indicator on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollRef.current) return;
+      const maxScroll = window.innerHeight;
+      const opacity = Math.max(0, 1 - window.scrollY / (maxScroll * 0.8)); // Fade out by 80% of view
+
+      gsap.to(scrollRef.current, {
+        opacity: opacity,
+        duration: 0.1, // Quick response for direct control
+        overwrite: "auto",
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section
       id="home"
