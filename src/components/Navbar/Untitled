@@ -1,0 +1,1 @@
+refactor(Navbar): replace IntersectionObserver with viewport-based section detection and improve scroll handling

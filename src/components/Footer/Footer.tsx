@@ -32,7 +32,7 @@ const Footer = () => {
     <footer className="py-8 border-t border-[var(--color-border)]">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
         {/* Logo */}
-        <span className="text-xl font-bold gradient-text">MA</span>
+        <img src="/favicon.svg" alt="Logo" className="w-10 h-10" />
 
         {/* Copyright */}
         <p className="text-sm text-[#1ae66b] text-center">
