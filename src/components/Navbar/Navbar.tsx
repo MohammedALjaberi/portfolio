@@ -1,10 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import usePortfolioStore from "../../store/usePortfolioStore";
 import { TRANS } from "../../constants/translations";
+
+// Section IDs in order (static, doesn't depend on language)
+const SECTION_IDS = [
+  "home",
+  "about",
+  "skills",
+  "projects",
+  "experience",
+  "contact",
+];
 
 const Navbar = () => {
   // Use global store
@@ -23,6 +33,10 @@ const Navbar = () => {
   } = usePortfolioStore();
 
   const t = TRANS[language];
+
+  // Track if we're programmatically scrolling to prevent observer interference
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Navigation links configuration (dynamic based on lang)
   const navLinks = [
@@ -48,68 +62,129 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [setIsScrolled]);
 
-  // Active section detection using IntersectionObserver
+  // Active section detection using viewport-based approach
+  // Checks which section's top is closest to but above the detection point
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-45% 0px -45% 0px", // Detect middle of screen
-      threshold: 0,
-    };
+    let ticking = false;
 
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Prevent unnecessary state updates if already active
-          setActiveSection(`#${entry.target.id}`);
-        }
-      });
-    };
+    const updateActiveSection = () => {
+      // Don't update during programmatic scrolling
+      if (isScrollingRef.current) return;
 
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const documentHeight = document.body.offsetHeight;
 
-    navLinks.forEach((link) => {
-      const section = document.querySelector(link.href);
-      if (section) observer.observe(section);
-    });
-
-    // Special check for bottom of page
-    const handleScrollBottom = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 50
-      ) {
+      // Check if scrolled to bottom (contact section)
+      if (scrollPosition + viewportHeight >= documentHeight - 100) {
         setActiveSection("#contact");
+        return;
+      }
+
+      // Special case: if we're at the very top, home should be active
+      if (scrollPosition < 100) {
+        setActiveSection("#home");
+        return;
+      }
+
+      // Detection point in the viewport (25% from top)
+      const detectionY = viewportHeight * 0.25;
+
+      // Find the section whose top is closest to the detection point (from above)
+      // This is the section that has scrolled past the detection point most recently
+      let activeId = "home";
+      let closestDistance = Infinity;
+
+      for (const id of SECTION_IDS) {
+        const section = document.getElementById(id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+
+          // Section is a candidate if its top has passed the detection point
+          // (i.e., top is above or at the detection point)
+          if (rect.top <= detectionY) {
+            // Distance from section top to detection point (how far past it is)
+            const distance = detectionY - rect.top;
+
+            // We want the section that most recently passed the detection point
+            // That's the one with the smallest distance (just past the point)
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              activeId = id;
+            }
+          }
+        }
+      }
+
+      setActiveSection(`#${activeId}`);
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScrollBottom, { passive: true });
+    // Run once on mount to set initial state
+    updateActiveSection();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateActiveSection, { passive: true });
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScrollBottom);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateActiveSection);
     };
-  }, [setActiveSection, language]); // Re-run when language changes to re-bind observers
+  }, [setActiveSection]);
 
   // Handle smooth scroll to section
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        // Set active section immediately for instant feedback
+        setActiveSection(href);
+        setIsMobileMenuOpen(false);
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      setIsMobileMenuOpen(false);
-      setActiveSection(href);
-    }
-  };
+        // Prevent observer from interfering during scroll
+        isScrollingRef.current = true;
+
+        // Clear any existing timeout
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        // Re-enable observer after scroll animation completes
+        scrollTimeoutRef.current = setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 1000); // 1 second should cover most smooth scroll animations
+      }
+    },
+    [setActiveSection, setIsMobileMenuOpen],
+  );
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
