@@ -74,6 +74,10 @@ export const TRANS = {
           description:
             "A feature-rich task management application enabling users to organize, track, and categorize tasks efficiently with a modern, responsive interface.",
         },
+        TreeShakeCheck: {
+          description:
+            "CLI tool to analyze JavaScript/TypeScript projects for tree-shaking issues — detects barrel files, unused exports, side effects, and CommonJS patterns that block dead code elimination.",
+        },
       },
     },
     contact: {
@@ -172,6 +176,10 @@ export const TRANS = {
         TaskManagement: {
           description:
             "تطبيق إدارة مهام غني بالميزات يتيح للمستخدمين تنظيم المهام وتتبعها وتصنيفها بكفاءة مع واجهة حديثة وسريعة الاستجابة.",
+        },
+        TreeShakeCheck: {
+          description:
+            "أداة CLI لتحليل مشاريع JavaScript/TypeScript واكتشاف مشاكل الـ tree-shaking — تكشف عن ملفات الـ barrel والتصديرات غير المستخدمة والآثار الجانبية وأنماط CommonJS التي تمنع إزالة الكود غير المستخدم.",
         },
       },
     },

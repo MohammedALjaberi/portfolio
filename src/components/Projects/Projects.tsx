@@ -23,6 +23,7 @@ import {
   SiZod,
   SiReacthookform,
   SiVuedotjs,
+  SiNodedotjs,
 } from "react-icons/si";
 import usePortfolioStore from "../../store/usePortfolioStore";
 import { TRANS } from "../../constants/translations";
@@ -95,12 +96,14 @@ const Projects = () => {
         accent: "#1ae66b",
       },
       {
-        name: "E-Commerce Dashboard",
-        description:
-          "A modern admin dashboard for managing products, orders, and customers. Built with React and features real-time data visualization.",
-        techStack: ["React", "TailwindCSS", "Chart.js", "REST API"],
-        github: "https://github.com/mohdja",
-        live: "#",
+        name: "treeshake-check",
+        description: t.projects.projectsList.TreeShakeCheck.description,
+        techStack: [
+          { name: "TypeScript", icon: <SiTypescript /> },
+          { name: "Node.js", icon: <SiNodedotjs /> },
+        ],
+        github: "https://github.com/MohammedALjaberi/treeshake-check",
+        live: "https://www.npmjs.com/package/treeshake-check",
         icon: (
           <DashboardIcon
             sx={{ fontSize: 80, color: "var(--color-text-primary)" }}
@@ -124,7 +127,7 @@ const Projects = () => {
         accent: "#1ae66b",
       },
     ],
-    [t]
+    [t],
   );
 
   const component = useRef<HTMLElement>(null);
