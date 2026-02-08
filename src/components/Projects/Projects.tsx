@@ -221,7 +221,7 @@ const Projects = () => {
                 <h3 className="text-2xl lg:text-4xl font-bold mb-2 lg:mb-3">
                   {project.name}
                 </h3>
-                <p className="text-sm lg:text-base text-[var(--color-text-secondary)] leading-relaxed mb-4 lg:mb-5 line-clamp-3">
+                <p className="text-sm lg:text-base text-[var(--color-text-secondary)] leading-relaxed mb-4 lg:mb-5 line-clamp-6">
                   {project.description}
                 </p>
 
